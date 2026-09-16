@@ -14,7 +14,11 @@
     "format": "biome format",
     "lint": "biome lint",
     "check": "biome check",
-    "deploy": "bun run build && wrangler deploy"
+    "deploy": "bun run build && wrangler deploy",
+    "release": "release-it",
+    "release:patch": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major"
   },
   "dependencies": {
     "@clerk/tanstack-react-start": "^1.4.21",
@@ -33,6 +37,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
     "@cloudflare/vite-plugin": "^1.26.0",
+    "@release-it/conventional-changelog": "^12.0.2",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/router-cli": "^1.132.0",
@@ -40,6 +45,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "release-it": "^21.0.3",
     "typescript": "^6.0.2",
     "vite": "^8.0.0",
     "wrangler": "^4.70.0"
