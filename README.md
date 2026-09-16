@@ -54,19 +54,37 @@ build` generates a Wrangler redirect configuration for the compiled Worker, so d
 not run `wrangler deploy` by itself before a build. The `deploy` script runs the
 required build first.
 
-For Cloudflare Workers Builds (GitHub/GitLab deployments), configure **Settings
-> Builds** as follows:
+### GitHub Actions
 
-| Setting | Value |
-| --- | --- |
-| Build command | `bun run build` |
-| Deploy command | `bunx wrangler deploy` |
+The workflow in `.github/workflows/deploy.yml` builds and deploys on pushes to
+`main`. You can also select **Actions > Deploy to Cloudflare > Run workflow**
+with the `main` branch. Deployments run one at a time.
 
-For preview branches, use `bunx wrangler versions upload` as the non-production
-deploy command. This ensures the Vite-generated Worker output is available to
-Wrangler in every deployment environment.
+In the repository's **Settings > Secrets and variables > Actions**, configure:
 
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
+| Type | Name | Value |
+| --- | --- | --- |
+| Secret | `CLOUDFLARE_API_TOKEN` | Cloudflare API token using the **Edit Cloudflare Workers** template, scoped to your account |
+| Secret | `CLOUDFLARE_ACCOUNT_ID` | The account ID from the Cloudflare dashboard |
+| Secret | `CLERK_SECRET_KEY` | Secret key from your production Clerk instance |
+| Variable | `VITE_CLERK_PUBLISHABLE_KEY` | Publishable key from the same Clerk instance |
+
+The public Clerk key is embedded during the Vite build. The workflow uploads
+`CLERK_SECRET_KEY` as a Worker secret; it is not provided to the build step.
+It also supplies the public key as `CLERK_PUBLISHABLE_KEY` in the Worker so
+Clerk can read it at runtime during server rendering.
+Configure your production domain in Clerk before using authentication.
+
+The target Worker name is `tankstack-start-clerk-cloudflare`, as currently set in
+`wrangler.jsonc`. Verify this name before the first deployment.
+If Cloudflare Workers Builds is already connected to this repository, disable
+its automatic builds to avoid deploying twice for each push.
+
+After configuring the values, commit and push the workflow to `main` and check
+the deployment URL in the Actions logs.
+
+See the official [Wrangler Action documentation](https://github.com/cloudflare/wrangler-action)
+for authentication and Worker secret configuration.
 
 KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
 
