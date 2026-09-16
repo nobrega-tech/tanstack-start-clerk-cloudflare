@@ -1,5 +1,6 @@
 {
-  "name": "my-app",
+  "name": "tanstack-start-clerk-cloudflare",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "imports": {
