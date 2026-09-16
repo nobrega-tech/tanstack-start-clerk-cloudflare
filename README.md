@@ -46,9 +46,25 @@ bun --bun run check
 
 This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) and `wrangler.jsonc`:
 
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
+1. Authenticate: `bunx wrangler login`
+2. Deploy: `bun run deploy`
+
+`wrangler.jsonc` deliberately uses TanStack Start's virtual entry point. `vite
+build` generates a Wrangler redirect configuration for the compiled Worker, so do
+not run `wrangler deploy` by itself before a build. The `deploy` script runs the
+required build first.
+
+For Cloudflare Workers Builds (GitHub/GitLab deployments), configure **Settings
+> Builds** as follows:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `bun run build` |
+| Deploy command | `bunx wrangler deploy` |
+
+For preview branches, use `bunx wrangler versions upload` as the non-production
+deploy command. This ensures the Vite-generated Worker output is available to
+Wrangler in every deployment environment.
 
 For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
 
