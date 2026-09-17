@@ -21,6 +21,7 @@
     "release:major": "release-it major"
   },
   "dependencies": {
+    "@clerk/localizations": "^4.17.1",
     "@clerk/tanstack-react-start": "^1.4.21",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",

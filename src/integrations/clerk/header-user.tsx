@@ -7,7 +7,9 @@ export default function HeaderUser() {
         <UserButton />
       </Show>
       <Show when="signed-out">
-        <SignInButton />
+        <SignInButton>
+          <button type="button">Entrar</button>
+        </SignInButton>
       </Show>
     </>
   )

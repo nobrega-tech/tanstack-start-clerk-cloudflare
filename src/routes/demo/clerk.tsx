@@ -12,17 +12,17 @@ function ClerkDemo() {
         <Show when="signed-out">
           <div className="space-y-1.5">
             <p className="island-kicker mb-2">Clerk</p>
-            <h1 className="demo-title">Sign in to continue</h1>
+            <h1 className="demo-title">Entre para continuar</h1>
             <p className="demo-muted text-sm">
-              Clerk renders the sign-in UI, manages sessions, and handles social
-              providers for you.
+              O Clerk exibe a interface de login, gerencia sessões e permite
+              entrar com suas contas de outros serviços.
             </p>
           </div>
           <div className="flex justify-center pt-2">
             <SignIn routing="hash" />
           </div>
           <p className="demo-muted text-center text-xs">
-            Built with{' '}
+            Desenvolvido com{' '}
             <a
               href="https://clerk.com"
               target="_blank"
@@ -54,8 +54,8 @@ function SignedInGreeting() {
     <div className="space-y-6">
       <div className="space-y-1.5">
         <p className="island-kicker mb-2">Clerk</p>
-        <h1 className="demo-title">Welcome back</h1>
-        <p className="demo-muted text-sm">You're signed in as {email}</p>
+        <h1 className="demo-title">Que bom ter você de volta!</h1>
+        <p className="demo-muted text-sm">Você entrou como {email}</p>
       </div>
 
       <div className="flex items-center gap-3">
@@ -79,7 +79,7 @@ function SignedInGreeting() {
       </div>
 
       <p className="demo-muted text-center text-xs">
-        Manage your account from the avatar in the header. Built with{' '}
+        Gerencie sua conta pela foto de perfil no cabeçalho. Desenvolvido com{' '}
         <a
           href="https://clerk.com"
           target="_blank"
