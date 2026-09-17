@@ -4,6 +4,10 @@
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
+  "vars": {
+    "VITE_CLERK_PUBLISHABLE_KEY": "pk_test_b25lLWRvYmVybWFuLTk1OTUuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "VERSION": "1"
+  },
   "observability": {
     "logs": {
       "enabled": true,
